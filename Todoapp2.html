@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html>
+	<head> 
+        <title>bin</title>
+        <meta charset="utf-8">
+        <meta name= "viewport" content= "width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="wrapper">
+          <div class= "container">
+             <div class= "addcard">
+              <div class= "addtextbox">
+                <form name="text" id="todo">
+                  <input type="text" class="addtextinput">
+                  </form>
+              </div>
+             <button class = "addbutton">
+             <div class="Button_Hline">&nbsp</div>
+             <div class="Button_Vline">&nbsp</div>
+             </button>
+            </div>
+            <div class ="card-container"></div> 
+            </div>
+          </div>
+        </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        .wrapper{
+          width: 100vw;
+          height: 100vh;
+          display: grid;
+          place-items: center;
+        }
+        .container{
+            position: relative;
+            padding :1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 90vh;
+            min-width: 200px;
+            max-width: 500px;
+            border-radius: 10px;
+            background-color: rgb(224,224,220);
+        }
+        .addcard{
+            z-index: 100;
+            position: relative;
+            margin-bottom: 0.2em;
+            top: 1em;
+            display: grid;
+            grid-gap:0.3em;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0.3em;
+            height: 4rem;
+            width: 98%;
+            border-radius: 10px;
+            background-color: aqua;
+         }
+         .addtextbox{
+            grid-column: 1 / span 3;
+            display: grid;
+            align-content: center;
+            height: 70%;
+            width: 100%;
+            background-color: aqua;
+            border-radius: 10px;
+            padding: 0.1em;
+            border: solid blue 0.1em;
+         }
+         .addtextinput{
+            font-size: 1.5em;
+            height: 100%;
+            width:100%;
+            background-color: aqua;
+            border-style: none;
+            outline: none;
+            Padding-left: 0.5em;
+        }
+        .addbutton{
+            position: relative;
+            grid-column-start: 4;
+            display: grid;
+            place-items: center;
+            height: 2rem;
+            width: 2rem;
+            border: none;
+            background-color: aqua;
+            cursor: pointer;
+            outline: none;
+        }
+        .Button_Hline{
+            display:block;
+            position: absolute;
+            padding:;
+            display: grid;
+            height: 0.2em;
+            width: 85%;
+            border-radius: 15px;
+            background-color: blue;
+        }
+        .Button_Vline{
+            display: block;
+            position: absolute;
+            display: grid;
+            height: 85%;
+            width: 0.2em;
+            border-radius: 15px;
+            background-color: blue;
+        }
+        .card-container{
+            position: relative;
+            padding :1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 90vh;
+            width: 100%;
+        }
+        .card{
+            z-index: 2;
+            position: relative;
+            top:-1em;
+            display: grid;
+            grid-auto-columns: 1fr 3fr 1fr;
+            grid-gap:0.3em;
+            align-items: center;
+            justify-items: center;
+            height: 0rem;
+            width: 0%;
+            border-radius: 10px;
+            background-color: aqua;
+            transition: all 1s ease;
+            overflow: hidden;
+        }
+        .cardreveal{
+            z-index: 2;
+            position: relative;
+            top: 1%;
+            display: grid;
+            grid-auto-columns: 1fr 3fr 1fr;
+            grid-gap:0.3em;
+            align-items: center;
+            justify-items: center;
+            height: 4rem;
+            width: 100%;
+            margin-top: 0.3em;
+            border-radius: 10px;
+            background-color: aqua; 
+            transition: all 0.9s ease;
+        }
+        .box{
+            z-index: 5;
+            position: relative;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 10%;
+            display: grid;
+            border: 0.1em solid blue;
+            overflow: hidden;
+         }
+        .tick{
+            position: absolute;
+            display: block;
+            align-self: end;
+            width: 0%;
+            top: 65%;
+            left: 0%;
+            transform: rotate(-50deg);
+            display:grid;
+         }
+        .checked{
+             border-left: 0.2em solid blue;
+             border-bottom: 0.2em solid blue;
+             transform-origin: top left;
+             animation-name: tick;
+             animation-fill-mode: forwards;
+             animation-duration: 1s;
+             box-shadow: 1px 1px 5px 50px lightgreen;
+             background: lightgreen;
+          }
+          @keyframes tick{
+            0%{ height:0%;}
+            30%{ height:50%;}
+            100%{ height:50%;}
+            0%{ width: 0%}
+            30%{ width: 0%}
+            100%{ width: 95%}
+            30%{ box-shadow: none;}
+          }
+        .textinput{
+          align-content: center;
+          height: 2rem;
+          width: 100%;
+          background-color: aqua;
+          border-radius: 10px;
+          padding-left: 0.7em;
+          border: solid blue .1em;
+         
+        }
+        .crossout{
+            text-decoration: line-through;
+            background-color: rgb(181, 181, 245);
+        }
+        .xbox{
+            position: relative;
+            grid-column-start:3;
+            display: grid;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 5px;
+            background-color: aqua;
+        }
+        .xbox > *{
+            pointer-events: none;
+        }
+        .binr1{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5%;
+            height: 80%;
+            background-color: blue;
+            border-radius: 0.8em;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            transition: all 0.7s ease;
+         }
+        .binl1{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5%;
+            height: 80%;
+            background-color: blue;
+            border-radius: 0.8em;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            transition: all 0.7s ease;
+        }
+        .binr2{
+            top: 30%;
+            left: 55%;
+            width: 35%;
+            height: 50%;
+            border-radius: 0.2em;
+            transform: translate(-50%, 0%) skew(-5deg, 0deg);
+            transition: all 0.7s ease;
+        }
+         .binl2{
+            position: absolute;
+            top: 30%;
+            left: 45%;
+            width: 35%;
+            height: 50%;
+            background-color: blue;
+            border-radius: 0.2em;
+            transform: translate(-50%, 0%) skew(5deg, 0deg);
+            transition: all 0.7s ease;
+        }
+           .lid1{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 5%;
+            background-color: blue;
+            border-radius: 0.8em;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            transition: all 0.7s ease;
+           }
+           .lid2{
+            position: absolute;
+            top: 24%;
+            left: 50%;
+            width: 50%;
+            height: 5%;
+            border-radius: 1em;
+            background-color: blue;
+            transform: translate(-50%, 0%) rotate(0deg);
+          }
+          .handle{
+            position: absolute;
+            top: 25%;
+            left:  50%;
+            width:  10%;
+            height: 5%;
+            background-color: blue;
+            border-radius: 50%;
+            transform: translate(-50%, 0%);
+            opacity: 0;
+            transition: all 0.2s  0.1s;
+          }
+         .handle2{
+            opacity: 1;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            width: 10%;
+            height: 5%;
+            background-color: blue;
+            border-radius: 50%;
+            transition: all 0.7s ease 0.5s;
+            transform: translate(-50%, 0%);
+        }
+        
+    </style>
+    <script>
+     
+      const mainButton = document.querySelector(".addbutton");
+      
+      let textNote = document.querySelector(".addtextinput");
+      
+      const originalCard = document.querySelector(".card");
+      
+      const container = document.querySelector(".card-container");
+     
+      
+      
+//Listeners
+      mainButton.addEventListener("click", addNewCard);
+     
+      
+//functions
+
+     //add new card 
+      function addNewCard(event) {
+        event.preventDefault();
+        const newCard = document.createElement("div");
+        const newCardChkBox = document.createElement("div");
+        const newCardBoxTick = document.createElement("div");
+        const newCardInput = document.createElement("INPUT");
+    
+        const newCardRemove = document.createElement("div");
+        const bin1 = document.createElement("div");
+        const bin2 = document.createElement("div");
+        const bin3 = document.createElement("div");
+        const bin4 = document.createElement("div");
+        
+        newCard.classList.add("card");
+        newCardChkBox.classList.add("box");
+        newCardBoxTick.classList.add("tick");
+        newCardInput.setAttribute("type", "text");
+        newCardInput.value = textNote.value;
+        newCardInput.classList.add("textinput");
+      
+        newCardRemove.classList.add("xbox");
+        bin1.classList.add("binl1");
+        bin2.classList.add("binr1");
+        bin3.classList.add("lid1");
+        bin4.classList.add("handle1");
+        
+        container.appendChild(newCard);
+        newCard.appendChild(newCardChkBox);
+        newCardChkBox.appendChild(newCardBoxTick);
+        newCard.appendChild(newCardInput);
+        newCard.appendChild(newCardRemove);
+        newCardRemove.appendChild(bin1);
+        newCardRemove.appendChild(bin2);
+        newCardRemove.appendChild(bin3);
+        newCardRemove.appendChild(bin4);
+        //checkbox
+        newCardChkBox.addEventListener("click", tickBox);
+        setTimeout(function(){newCard.classList.add("cardreveal");
+        }, 5);
+        
+        //delete card button
+       newCardRemove.addEventListener("click", removeCard);
+        
+        //checkoff card
+        function tickBox() {
+        this.childNodes[0].classList.toggle("checked");
+        newCardInput.classList.toggle("crossout");
+    }
+        
+       }
+ 
+  
+
+   
+//check card off    
+    function tickBox() {
+        this.childNodes[0].classList.toggle("checked");
+        newCardInput.classList.add("crossout");
+    }
+
+//remove card
+    function removeCard(e) {
+        console.log(e.target.childNodes[1]);
+        const item = e.target;
+        if (item.classList[0] === "xbox"){
+        item.childNodes[0].classList.toggle("binl2");
+        item.childNodes[1].classList.toggle("binr2");
+        item.childNodes[2].classList.toggle("lid2");
+        item.childNodes[3].classList.toggle("handle2");
+        item.childNodes[1].addEventListener("transitionend", function(){item.parentNode.remove()});
+        
+    }
+    }
+        
+      
+  
+    </script>
+    </body>
+</html>
