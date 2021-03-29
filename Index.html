@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html>
+	<head> 
+        <title>bin</title>
+        <meta charset="utf-8">
+        <meta name= "viewport" content= "width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="big_wrapper">
+        <div class="big_container">
+        <div class= "container1_main">
+             <div class= "add_card">
+              <div class= "add_text_box">
+                <form name="text" id="todo">
+                 <input type="text" class="add_text_input">
+              </div>
+             <button class = "add_button">
+                <div class="button_hori_line">&nbsp</div>
+                <div class="button_vert_line">&nbsp</div>
+             </div>
+        </div>
+        <div class= "container2_main">
+            <div class= "card-container"></div>
+            </div>
+            </div>
+          </div>
+        
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .big_wrapper{
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(45deg, rgb(238, 183, 238) 20%, rgb(181,171,241) 90%);
+        }
+
+        .big_container{
+            z-index: 20;
+            height: 80vh;
+            width: 80vw;
+            max-width: 500px;
+            border-radius: 25px;
+            background: linear-gradient(90deg, rgb(245, 235, 235) 50%, rgb(238 211 215) 50%);
+}
+        
+        .container1_main{
+            height: 20%;
+            width: 100%;
+            border-radius: 25px 25px 25px 50px;
+            background-color: rgb(238 211 215);
+            display: grid;
+            place-items: center;
+        }
+   
+        .container2_main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80%;
+            width: 100%;
+            border-radius: 25px 50px 25px 25px;
+            background-color: rgb(245, 235, 235); 
+            overflow: hidden;
+        }
+   
+        .add_card{
+            z-index: 100;
+            display: grid;
+            grid-gap: 0.3em;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0.3em;
+            height: 4rem;
+            width: 90%;
+        
+         }
+         .add_text_box{
+            grid-column: 1 / span 3;
+            display: grid;
+            align-content: center;
+            height: 70%;
+            width: 100%;
+            background-color: rgb(181 171 241);
+            border-radius: 25px 25px 25px 50px;
+            padding: 0.1em;
+            border: solid rgb(141 131 241) 0.1em;
+         }
+
+         .add_text_input{
+            font-size: 1.5em;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(181 171 241);
+            border-style: none;
+            outline: none;
+            border-radius: 25px 25px 25px 50px;
+            Padding-left: 0.5em;
+        }
+        
+        .add_button{
+            grid-column-start: 4;
+            display: grid;
+            place-items: center; 
+            grid: 1fr / 1fr;
+            height: 2rem;
+            width: 2rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            outline: none;
+            
+        }
+        
+        .button_hori_line,
+        .button_vert_line{
+            grid-column: 1;
+            grid-row: 1;
+            height: 0.2em;
+            width: 85%;
+            border-radius: 15px;
+            background-color: rgb(141 131 241);
+            transition: 0.4s ease;
+           
+        }
+
+        .button_vert_line{
+            transform: rotate(90deg);
+        }
+        .add_button:hover .button_hori_line,
+        .add_button:hover .button_vert_line{
+            background-color: rgb(25, 6, 134);
+            transition: 0.4s ease;
+        }
+
+        .card-container{
+            padding :1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .card{ 
+            display: grid;
+            grid-gap: 0.3em;
+            grid-template-columns: 1fr 70% 1fr;
+            justify-content: center;
+            height: 0rem;
+            width: 95%;
+            border-radius: 20px;
+            background-color: rgb(181 171 241);
+            transition: all 1s ease;
+            overflow: hidden;
+            border: solid rgb(141 131 241) 0.1em;
+            margin: 0.3em 0 0 0;
+         }  
+
+        .card_reveal{
+            padding: 0.9em;
+            height: 4rem;
+        }
+
+        .compleated_box{
+            height: 2.2rem;
+            width: 2rem;
+            border-radius: 10px;
+            border: 0.1em solid rgb(141 131 241);
+            overflow: hidden;
+            grid-column: 1;
+            grid-row: 1;
+         }
+         
+        .tick{
+            position: relative;
+            width: 0%;
+            top: 55%;
+            left: 0%;
+            transform: rotate(-50deg);
+         }
+
+        .checked{
+            border-left: 0.2em solid rgb(141 131 241);
+            border-bottom: 0.2em solid rgb(141 131 241);
+            transform-origin: top left;
+            background-color: lightgreen;
+            animation-name: tick;
+            animation-fill-mode: forwards;
+            animation-duration: 1s;
+          }
+
+          @keyframes tick{
+            0%{  height:0%;
+                 width: 0%}
+            30%{ height:50%;
+                 width: 0%;
+                 box-shadow: none;}
+            100%{height:50%;
+                 width: 95%;
+                 box-shadow: 1px 1px 5px 50px lightgreen;}
+          }
+
+        .text_input{
+            grid-column: 2;
+            grid-row: 1;
+            height: 2.2rem;
+            width: 100%;
+            outline: none;
+            background-color: rgb(238 211 215);
+            border-radius: 15px;
+            padding-left: 0.7em;
+            border: solid rgb(141 131 241) 0.1em;
+            transition: 1s ease;
+        }
+        .crossout{
+            text-decoration: line-through;
+            background-color: rgb(181, 181, 245);
+        }
+
+        .x_box{
+            grid-column: 3;
+            grid-row: 1;
+            justify-self: right;
+            display: grid;
+            grid: 1fr / 1fr;
+            place-items: center;
+            height: 2.2rem;
+            width: 2rem;
+            border-radius: 10px;
+            background-color: transparent;
+            transition: all 1s ease;
+            bor
+        }
+        .x_box > *{
+            pointer-events: none;
+        }
+        
+        .x_line-1_bin,
+        .x_line-2_bin{
+            grid-column: 1;
+            grid-row: 1;
+            width: 7%;
+            height: 80%;
+            background-color: rgb(141 131 241);
+            border-radius: 0.8em;
+            transform: rotate(-45deg);
+            transition: all 0.7s ease;
+         }
+        .x_box:hover .x_line-1_bin{
+            width: 35%;
+            height: 50%;
+            border-radius: 0.2em;
+            transform: translate(5%, 0%) skew(-8deg, 0deg);
+            transition: all 0.7s ease;
+        }
+        .x_line-right_bin,
+        .x_line-left_bin{
+            grid-column: 1;
+            grid-row: 1;
+            width: 35%;
+            height: 50%;
+            border-radius: 0.2em;
+            transform-origin: bottom;
+            transform: skew(-8deg, 0deg);
+            transition: all 0.7s ease;
+        }
+       
+        .x_line-left_bin{
+            position: relative;
+            left: -1px;
+        }
+        
+        .x_box:hover .x_line-2_bin{
+            width: 35%;
+            height: 50%;
+            border-radius: 0.2em;
+            transform: translate(-5%, 0%) skew(8deg, 0deg);
+            transition: all 0.7s ease;
+     
+        }
+           .lid1{
+            grid-column-start: 1;
+            grid-row-start: 1;
+            width: 6%;
+            height: 80%;
+            background-color: rgb(141 131 241);
+            border-radius: 0.8em;
+            transform: rotate(45deg);
+            transition: all 0.7s ease;
+           }
+
+           .x_box:hover .lid1{
+            border-radius: 1em;
+            transform: scale(0.6, 1.7) translate(0%, -22%) rotate(90deg);
+        }
+          
+        .lid2.lid2.lid2{
+            transform: scale(0, 0.4) translate(0%, -80%) rotate(180deg);
+        }
+         
+       .x_box_delete{
+           z-index: 200;
+           background-color: rgb(255,255,255,0.0);
+           transform-origin: 65% 65%;
+           transform: rotate(-45deg)translatey(-10%) translateX(5%);
+           transition: all 0.5s ;
+          
+       }
+       .input_delete{
+          grid-row: 1;
+          transform-origin: top right;
+          animation-name: texttobin;
+          animation-duration: 1s;
+          animation-fill-mode: forwards;
+       }
+  
+      @keyframes texttobin{
+          0%{transform:  translate(0px)}
+          30%{transform: translate(0%)}
+          100%{transform: scale(0.05) translatey(700%) translateX(90%)}
+       }
+    
+      .card_delete{
+          animation-name: card_deleted;
+          animation-duration: 1.1s;
+          animation-delay: 0.3s;
+          animation-fill-mode: forwards;
+        }
+      @keyframes card_deleted{
+          0%{opacity:1;}
+          100%{opacity: 0.0;}
+      }
+    
+
+             
+    </style>
+    <script>
+     
+      const mainButton = document.querySelector(".add_button");
+      
+      const textNote = document.querySelector(".add_text_input");
+      
+      const originalCard = document.querySelector(".card");
+      
+      const container = document.querySelector(".card-container");
+      
+      const Todo = document.querySelector(".todo");
+      
+      
+//Listeners
+      mainButton.addEventListener("click", addNewCard);
+    
+      todo.addEventListener("submit", (e)=>{
+        e.preventDefault();
+      },false);
+    
+      
+//functions
+    
+     //add new card 
+      function addNewCard(event){
+        const newCard = document.createElement("div");
+        const newCardChkBox = document.createElement("div");
+        const newCardBoxTick = document.createElement("div");
+        const newCardInput = document.createElement("INPUT");
+    
+        const newCardRemove = document.createElement("div");
+        const bin1 = document.createElement("div");
+        const bin2 = document.createElement("div");
+        const bin3 = document.createElement("div");
+        
+        newCard.classList.add("card");
+        newCardChkBox.classList.add("compleated_box");
+        newCardBoxTick.classList.add("tick");
+        newCardInput.setAttribute("type", "text");
+        newCardInput.value = textNote.value;
+        newCardInput.classList.add("text_input");
+      
+        newCardRemove.classList.add("x_box");
+        bin1.classList.add("x_line-2_bin");
+        bin2.classList.add("x_line-1_bin");
+        bin3.classList.add("lid1");
+        
+        container.appendChild(newCard);
+        
+        newCardChkBox.appendChild(newCardBoxTick);
+        newCard.append(newCardChkBox, newCardInput,newCardRemove);
+        newCardRemove.append(bin1, bin2, bin3);
+        
+        //checkbox
+        newCardChkBox.addEventListener("click", tickBox);
+        setTimeout(function(){newCard.classList.add("card_reveal");
+        }, 5);
+        //clear input
+        textNote.value="";
+        //delete card button
+        newCardRemove.addEventListener("click", removeCard);
+       
+       //remove card
+        function removeCard(e) {
+            const item = e.target;
+            if (item.classList[0] === "x_box"){
+                item.childNodes[0].classList.toggle("x_line-left_bin");
+                item.childNodes[1].classList.toggle("x_line-right_bin");
+                item.childNodes[2].classList.toggle("lid2");
+                newCardRemove.classList.add("x_box_delete");
+                newCardInput.classList.add("input_delete");
+                newCard.classList.add("card_delete");
+                newCardInput.addEventListener("animationend", function(){item.parentNode.remove()});  
+            }
+        }
+    }
+    //checkoff card
+    function tickBox() {
+        this.childNodes[0].classList.toggle("checked");
+        this.nextSibling.classList.toggle("crossout");
+    }
+    </script>
+  </body>
+</html>
